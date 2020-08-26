@@ -3,6 +3,7 @@ import inspect
 import io
 import os
 import sys
+import json
 import datetime
 import traceback
 import re
@@ -566,6 +567,11 @@ class _XMLTestResult(_TextTestResult):
         )
         testcase.setAttribute('time', '%.3f' % test_result.elapsed_time)
         testcase.setAttribute('timestamp', test_result.timestamp)
+
+        if len(test_result.stdout) != 0:
+            a = json.loads(test_result.stdout)
+            for k in a.keys():
+                testcase.setAttribute(k, a[k])
 
         if test_result.filename is not None:
             # Try to make filename relative to current directory.
