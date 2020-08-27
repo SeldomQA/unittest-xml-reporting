@@ -49,6 +49,16 @@ STDOUT_LINE = '\nStdout:\n%s'
 STDERR_LINE = '\nStderr:\n%s'
 
 
+def set_attribute(attr):
+    """
+    set attribute
+    """
+    if isinstance(attr, dict):
+        sys.stdout.write(json.dumps(input))
+    else:
+        raise TypeError("Type error, must be dictionary")
+
+
 def safe_unicode(data, encoding='utf8'):
     """Return a unicode string containing only valid XML characters.
 
